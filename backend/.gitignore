@@ -1,0 +1,28 @@
+# Dependency folders (Massive files you don't need on GitHub)
+node_modules/
+bower_components/
+
+# Local Environment / Secrets (NEVER push your passwords/API keys)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+dist/
+build/
+out/
+
+# IDE/Editor specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
