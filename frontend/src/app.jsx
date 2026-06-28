@@ -8,12 +8,12 @@ import JobDetails from "./pages/JobDetails";
 import Profile from "./pages/Profile";
 import RecruiterDashboard from "./pages/RecruiterDashboard";
 import Navbar from "./components/Navbar";
-
+import Footer from "./components/Footer";
 function App() {
     return (
-      <BrowserRouter>
+        <BrowserRouter>
         <Navbar />
-  
+      
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -23,6 +23,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/recruiter" element={<RecruiterDashboard />} />
         </Routes>
+      
+        <Footer />
       </BrowserRouter>
     );
   }
