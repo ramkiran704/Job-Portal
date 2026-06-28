@@ -1,13 +1,13 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/common/UserNavbar";
+import Footer from "../../components/common/Footer";
 import "../styles/Profile.css";
 
 function Profile() {
   const [user, setUser] = useState({
     name: "Niya Ann Renjith",
     email: "niya@gmail.com",
-    phone: "+91 9876543210",
+    phone: "+91 xxxxxxxxxx",
     skills: "React, Node.js, MongoDB",
     experience: "Fresher",
     education: "B.Tech Computer Science",
@@ -26,7 +26,7 @@ function Profile() {
 
   return (
     <>
-      <Navbar />
+     <UserNavbar />
 
       <div className="profile-page">
 

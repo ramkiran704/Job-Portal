@@ -1,6 +1,7 @@
 import "../styles/Home.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import UserNavbar from "../../components/user/UserNavbar";
+
+import Footer from "../../components/common/Footer";
 function Home() {
   const jobs = [
     {
@@ -32,7 +33,7 @@ function Home() {
   return (
     <div className="home">
 
-      <Navbar />
+<UserNavbar />
 
       {/* Hero Section */}
       <section className="hero">

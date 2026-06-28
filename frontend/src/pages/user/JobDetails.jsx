@@ -1,11 +1,11 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/common/UserNavbar";
+import Footer from "../../components/common/Footer";
 import "../styles/JobDetails.css";
 
 function JobDetails() {
   return (
     <>
-      <Navbar />
+      <UserNavbar />
 
       <div className="job-details">
 

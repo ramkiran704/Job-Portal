@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import UserNavbar from "../../components/user/UserNavbar";
+import Footer from "../../components/common/Footer";
 import "../styles/Jobs.css";
 
 function Jobs() {
@@ -74,7 +74,7 @@ function Jobs() {
 
   return (
     <>
-      <Navbar />
+      <UserNavbar />
 
       <div className="jobs-page">
         <h1>Available Jobs</h1>

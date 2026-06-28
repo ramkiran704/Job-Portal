@@ -1,0 +1,39 @@
+.myjobs-page{
+    min-height:100vh;
+    background:#f5f7fb;
+    padding:60px 8%;
+}
+
+.myjobs-page h1{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:40px;
+}
+
+.jobs-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.job-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.job-card button{
+    margin-top:15px;
+    margin-right:10px;
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#2563eb;
+    color:white;
+}
+
+.delete{
+    background:#ef4444;
+}

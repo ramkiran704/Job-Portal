@@ -1,0 +1,31 @@
+.applicants-page{
+    min-height:100vh;
+    background:#f5f7fb;
+    padding:60px 8%;
+}
+
+.applicants-page h1{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:40px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+    padding:18px;
+}
+
+td{
+    padding:18px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}

@@ -1,0 +1,45 @@
+.post-job-page{
+    background:#f5f7fb;
+    min-height:100vh;
+    padding:60px 8%;
+}
+
+.post-job-card{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.post-job-card h1{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:30px;
+}
+
+.post-job-card form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.post-job-card input,
+.post-job-card textarea,
+.post-job-card select{
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.post-job-card button{
+    padding:15px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+}

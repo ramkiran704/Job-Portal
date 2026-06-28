@@ -1,0 +1,60 @@
+.applications-page{
+    min-height:100vh;
+    background:#f5f7fb;
+    padding:60px 8%;
+}
+
+.applications-page h1{
+    text-align:center;
+    color:#2563eb;
+    font-size:42px;
+}
+
+.applications-page p{
+    text-align:center;
+    color:#666;
+    margin-bottom:40px;
+}
+
+.applications-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+.application-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.application-card h2{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.application-card h3{
+    margin-bottom:10px;
+}
+
+.status{
+    display:inline-block;
+    margin-top:15px;
+    padding:8px 18px;
+    border-radius:20px;
+    font-weight:bold;
+    color:white;
+}
+
+.under-review{
+    background:#f59e0b;
+}
+
+.interview-scheduled{
+    background:#10b981;
+}
+
+.rejected{
+    background:#ef4444;
+}
