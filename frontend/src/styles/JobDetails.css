@@ -1,0 +1,53 @@
+.job-details{
+    background:#f8fafc;
+    min-height:100vh;
+    padding:60px 8%;
+}
+
+.job-box{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.job-box h1{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.job-box h2{
+    margin-top:30px;
+    margin-bottom:10px;
+}
+
+.job-box p{
+    margin:10px 0;
+    line-height:1.8;
+}
+
+.job-box ul{
+    margin-left:20px;
+}
+
+.job-box li{
+    margin:10px 0;
+}
+
+.job-box button{
+    margin-top:30px;
+    width:100%;
+    padding:15px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.job-box button:hover{
+    background:#1d4ed8;
+}
