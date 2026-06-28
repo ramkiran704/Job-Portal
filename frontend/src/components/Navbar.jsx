@@ -1,40 +1,25 @@
 import { Link } from "react-router-dom";
+import "../styles/Navbar.css";
 
 function Navbar() {
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "15px 40px",
-        background: "#2563eb",
-        color: "white",
-      }}
-    >
-      <h2>Job Portal</h2>
+    <nav className="navbar">
 
-      <div style={{ display: "flex", gap: "20px" }}>
-        <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-          Home
-        </Link>
-
-        <Link to="/jobs" style={{ color: "white", textDecoration: "none" }}>
-          Jobs
-        </Link>
-
-        <Link to="/login" style={{ color: "white", textDecoration: "none" }}>
-          Login
-        </Link>
-
-        <Link to="/register" style={{ color: "white", textDecoration: "none" }}>
-          Register
-        </Link>
-
-        <Link to="/profile" style={{ color: "white", textDecoration: "none" }}>
-          Profile
-        </Link>
+      <div className="logo">
+        JobPortal
       </div>
+
+      <ul className="nav-links">
+        <li><Link to="/home">Home</Link></li>
+        <li><Link to="/jobs">Jobs</Link></li>
+        <li><Link to="/profile">Profile</Link></li>
+        <li><Link to="/recruiter">Dashboard</Link></li>
+      </ul>
+
+      <button className="logout-btn">
+        Logout
+      </button>
+
     </nav>
   );
 }
