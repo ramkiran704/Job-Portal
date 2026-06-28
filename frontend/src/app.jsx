@@ -7,21 +7,24 @@ import Jobs from "./pages/Jobs";
 import JobDetails from "./pages/JobDetails";
 import Profile from "./pages/Profile";
 import RecruiterDashboard from "./pages/RecruiterDashboard";
+import Navbar from "./components/Navbar";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/jobs/:id" element={<JobDetails />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/recruiter" element={<RecruiterDashboard />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
+    return (
+      <BrowserRouter>
+        <Navbar />
+  
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/jobs/:id" element={<JobDetails />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/recruiter" element={<RecruiterDashboard />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
 
 export default App;
