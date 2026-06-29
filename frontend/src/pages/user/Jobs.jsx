@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserNavbar from "../../components/user/UserNavbar";
 import Footer from "../../components/common/Footer";
-import "../styles/Jobs.css";
+import "../../styles/Jobs.css";
 
 function Jobs() {
   const navigate = useNavigate();

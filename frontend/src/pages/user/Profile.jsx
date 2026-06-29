@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Navbar from "../../components/common/UserNavbar";
+import UserNavbar from "../../components/user/UserNavbar";
 import Footer from "../../components/common/Footer";
-import "../styles/Profile.css";
+import "../../styles/Profile.css";
 
 function Profile() {
   const [user, setUser] = useState({

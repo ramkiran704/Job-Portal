@@ -1,5 +1,6 @@
 import RecruiterNavbar from "../../components/recruiter/RecruiterNavbar";
-
+import Footer from "../../components/common/Footer";
+import "../../styles/Dashboard.css";
 function Dashboard() {
   return (
     <>

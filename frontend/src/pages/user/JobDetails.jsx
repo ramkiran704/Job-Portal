@@ -1,6 +1,6 @@
-import Navbar from "../../components/common/UserNavbar";
+import UserNavbar from "../../components/user/UserNavbar";
 import Footer from "../../components/common/Footer";
-import "../styles/JobDetails.css";
+import "../../styles/JobDetails.css";
 
 function JobDetails() {
   return (

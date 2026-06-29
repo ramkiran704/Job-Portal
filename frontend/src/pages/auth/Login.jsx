@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/Login.css";
+import "../../styles/Login.css";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);

@@ -32,17 +32,13 @@ function Applications() {
       <UserNavbar />
 
       <div className="applications-page">
-
         <h1>My Applications</h1>
 
-        <p>Track the status of all your job applications.</p>
+        <p>Track the status of your applications.</p>
 
         <div className="applications-list">
-
           {applications.map((application) => (
-
             <div className="application-card" key={application.id}>
-
               <h2>{application.jobTitle}</h2>
 
               <h3>{application.company}</h3>
@@ -58,13 +54,9 @@ function Applications() {
               >
                 {application.status}
               </span>
-
             </div>
-
           ))}
-
         </div>
-
       </div>
 
       <Footer />
