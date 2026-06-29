@@ -11,15 +11,28 @@ function Login() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // Later replace this with backend authentication
+  if (email.trim() === "" || password.trim() === "") {
+    alert("Please enter email and password");
+    return;
+  }
 
-    if (email.trim() === "" || password.trim() === "") {
-      alert("Please enter email and password");
-      return;
-    }
+  const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
 
+  if (!savedUser) {
+    alert("No registered user found. Please register first.");
+    return;
+  }
+
+  if (
+    savedUser.email === email &&
+    savedUser.password === password
+  ) {
+    alert("Login successful");
     navigate("/home");
-  };
+  } else {
+    alert("Invalid email or password");
+  }
+};
 
   return (
     <div className="login-page">

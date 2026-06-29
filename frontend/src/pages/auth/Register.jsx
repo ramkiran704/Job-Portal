@@ -22,26 +22,41 @@ function Register() {
   };
 
   const handleRegister = () => {
+  if (
+    !formData.name ||
+    !formData.email ||
+    !formData.password ||
+    !formData.confirmPassword
+  ) {
+    alert("Please fill all fields");
+    return;
+  }
 
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.password ||
-      !formData.confirmPassword
-    ) {
-      alert("Please fill all fields");
-      return;
-    }
+  if (formData.password !== formData.confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
 
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
+  const existingUser = JSON.parse(localStorage.getItem("registeredUser"));
 
-    alert("Registration Successful!");
+  if (existingUser && existingUser.email === formData.email) {
+    alert("Email already registered");
+    return;
+  }
 
-    navigate("/");
-  };
+  localStorage.setItem(
+    "registeredUser",
+    JSON.stringify({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      role: formData.role,
+    })
+  );
+
+  alert("Registration Successful!");
+  navigate("/");
+};
 
   return (
     <div className="register-page">
