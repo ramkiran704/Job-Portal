@@ -15,7 +15,9 @@ function JobCard({ job }) {
       <span className="job-type">{job.type}</span>
 
       <div className="job-buttons">
-        <button className="apply-btn">Apply Now</button>
+        <Link to={`/apply/${job.id}`}>
+          <button className="apply-btn">Apply Now</button>
+        </Link>
 
         <Link to={`/jobs/${job.id}`}>
           <button className="details-btn">View Details</button>
