@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../../styles/Home.css";
 import UserNavbar from "../../components/user/UserNavbar";
 import Footer from "../../components/common/Footer";
@@ -39,6 +40,24 @@ function Home() {
     },
   ];
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredJobs, setFilteredJobs] = useState(jobs);
+
+  const handleSearch = () => {
+    if (searchTerm.trim() === "") {
+      setFilteredJobs(jobs);
+      return;
+    }
+
+    const result = jobs.filter(
+      (job) =>
+        job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.company.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setFilteredJobs(result);
+  };
+
   return (
     <>
       <UserNavbar />
@@ -60,8 +79,11 @@ function Home() {
               <input
                 type="text"
                 placeholder="Search by job title, company..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <button>Search</button>
+
+              <button onClick={handleSearch}>Search</button>
             </div>
           </div>
 
@@ -101,9 +123,13 @@ function Home() {
           <h2>Featured Jobs</h2>
 
           <div className="jobs">
-            {jobs.map((job) => (
-              <JobCard key={job.id} job={job} />
-            ))}
+            {filteredJobs.length > 0 ? (
+              filteredJobs.map((job) => (
+                <JobCard key={job.id} job={job} />
+              ))
+            ) : (
+              <p>No jobs found</p>
+            )}
           </div>
         </section>
       </div>
