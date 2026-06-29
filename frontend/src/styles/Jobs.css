@@ -117,3 +117,34 @@
     background:#1d4ed8;
     
     }
+    .job-controls{
+        display: flex;
+        justify-content: center; 
+        align-items: center;     
+        margin: 20px auto;
+        display:flex;
+        width:100%;
+        max-width:650px;
+    }
+    .job-controls input{
+        align-items: center;
+        flex:1;
+        padding:18px;
+        font-size:18px;
+        border:none;
+        border-radius:10px 0 0 10px;
+        outline:none;
+        box-shadow:0 5px 15px rgba(0,0,0,.1);
+    }
+    .job-controls select{
+        padding:18px 35px;
+        border:none;
+        background:#2563eb;
+        color:white;
+        font-size:18px;
+        cursor:pointer;
+        border-radius:0 10px 10px 0;
+    }
+    .available{
+        color:#2563eb;
+    }

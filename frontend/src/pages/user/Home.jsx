@@ -67,7 +67,7 @@ function Home() {
         <section className="hero">
           <div className="hero-left">
             <h1>
-              Find Your <span>Dream Job</span>
+             <span>Find Your Dream Job</span>
             </h1>
 
             <p>

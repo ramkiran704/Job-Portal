@@ -77,7 +77,7 @@ function Jobs() {
       <UserNavbar />
 
       <div className="jobs-page">
-        <h1>Available Jobs</h1>
+        <h1 className="available"><span>Available Jobs</span></h1>
 
         <p>Explore opportunities from top companies.</p>
 
