@@ -1,8 +1,11 @@
 import UserNavbar from "../../components/user/UserNavbar";
 import Footer from "../../components/common/Footer";
 import "../../styles/JobDetails.css";
+import { Link, useParams } from "react-router-dom";
 
 function JobDetails() {
+  const { id } = useParams();
+
   return (
     <>
       <UserNavbar />
@@ -38,7 +41,9 @@ function JobDetails() {
             <li>REST APIs</li>
           </ul>
 
-          <button>Apply Now</button>
+          <Link to={`/apply/${id}`}>
+  <button className="apply-btn">Apply Now</button>
+</Link>
 
         </div>
 
