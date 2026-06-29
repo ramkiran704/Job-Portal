@@ -15,6 +15,7 @@ import PostJob from "./pages/recruiter/PostJob";
 import MyJobs from "./pages/recruiter/MyJobs";
 import Applicants from "./pages/recruiter/Applicants";
 
+
 function App() {
   return (
     <BrowserRouter>

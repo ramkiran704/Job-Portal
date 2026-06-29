@@ -1,44 +1,26 @@
 import express from 'express';
-// Assuming you have a jobController file with these matching methods
-// import { getAllJobs, getJobById, createJob, getRecruiterJobs, deleteJob } from '../controllers/jobController.js';
+import {
+  postJob,
+  getAllJobs,
+  getJobById,
+  getMyJobs
+} from '../controllers/jobController.js';
+import { protect, authorizeRoles } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 /* --- PUBLIC ROUTES --- */
-// Handles Home.jsx and Jobs.jsx search/filter queries
-router.get('/', (req, res) => {
-  res.json({ message: "Get all jobs/search endpoint reached" });
-});
+router.get('/', getAllJobs);
 
-// Handles JobDetails.jsx viewing parameters
-router.get('/:id', (req, res) => {
-  res.json({ message: `Get job details for ID ${req.params.id} reached` });
-});
+// ✅ FIX: /my-postings MUST come before /:id
+// Express matches routes top-to-bottom — if /:id is first,
+// a request to /my-postings gets treated as id="my-postings"
+// and hits the DB with a bad ObjectId, never reaching getMyJobs
+router.get('/my-postings', protect, authorizeRoles('employer'), getMyJobs);
 
+router.get('/:id', getJobById);
 
 /* --- RECRUITER RESTRICTED ROUTES --- */
-// Handles Dashboard.jsx summary reporting data
-router.get('/recruiter-summary', (req, res) => {
-  res.json({ message: "Recruiter dashboard data metrics reached" });
-});
-
-// Handles MyJobs.jsx individual recruiter listings view
-router.get('/my-postings', (req, res) => {
-  res.json({ message: "Fetch specific recruiter postings reached" });
-});
-
-// Handles PostJob.jsx data entry
-router.post('/', (req, res) => {
-  res.json({ message: "Create new job vacancy endpoint reached" });
-});
-
-// Handles updating or removing postings
-router.put('/:id', (req, res) => {
-  res.json({ message: `Update job posting ID ${req.params.id} reached` });
-});
-
-router.delete('/:id', (req, res) => {
-  res.json({ message: `Delete job posting ID ${req.params.id} reached` });
-});
+router.post('/', protect, authorizeRoles('employer'), postJob);
 
 export default router;
