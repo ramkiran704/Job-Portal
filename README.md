@@ -5,24 +5,6 @@ A full-stack Job Portal web application built using the **MERN Stack (MongoDB, E
 
 ---
 
-## 📖 Table of Contents
-
-- Introduction
-- Features
-- Technology Stack
-- System Architecture
-- Project Structure
-- Installation
-- Configuration
-- Running the Project
-- API Overview
-- User Roles
-- Future Enhancements
-- Contributors
-- License
-
----
-
 # Introduction
 
 The Job Portal is a web-based recruitment platform that enables:
