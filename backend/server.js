@@ -37,7 +37,7 @@ if (!fs.existsSync(uploadsDir)) {
   console.log("📁 Created missing 'uploads' directory automatically.");
 }
 
-// ✅ Use absolute path for serving uploaded resume files over http://localhost:5000/uploads/...
+// ✅ Use absolute path for serving uploaded resume files over http://localhost:5001/uploads/...
 app.use('/uploads', express.static(uploadsDir));
 
 // 4. API Endpoints Mapping
@@ -60,7 +60,7 @@ app.use((err, req, res, next) => {
 });
 
 // 7. Initialize Application Port Listener
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`🚀 Server processing on port ${PORT}`);
 });
