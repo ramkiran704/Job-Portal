@@ -258,19 +258,6 @@ http://localhost:5000
 
 ---
 
-# Future Enhancements
-
-- AI Resume Screening
-- AI Job Recommendations
-- Email Notifications
-- Interview Scheduling
-- Resume Parsing
-- Company Reviews
-- Chat Between Recruiter & Candidate
-- Dashboard Analytics
-
----
-
 # Expected Outcome
 
 The Job Portal provides a secure, scalable, and user-friendly online recruitment platform that simplifies hiring for recruiters and job searching for candidates while demonstrating full-stack web development using the MERN stack.
@@ -304,4 +291,4 @@ You may modify and use this project for learning and academic activities.
 - MongoDB
 - JWT
 - Mongoose
-- Axios
+
