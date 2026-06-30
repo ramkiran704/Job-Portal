@@ -4,14 +4,18 @@ import Footer from "../../components/common/Footer";
 import "../../styles/Profile.css";
 
 function Profile() {
-  const [user, setUser] = useState({
-    name: "Niya Ann Renjith",
-    email: "niya@gmail.com",
-    phone: "+91 xxxxxxxxxx",
-    skills: "React, Node.js, MongoDB",
-    experience: "Fresher",
-    education: "B.Tech Computer Science",
-  });
+  const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
+
+  const [user, setUser] = useState(
+    savedUser || {
+      name: "",
+      email: "",
+      phone: "",
+      skills: "",
+      experience: "",
+      education: "",
+    }
+  );
 
   const handleChange = (e) => {
     setUser({
@@ -21,30 +25,26 @@ function Profile() {
   };
 
   const handleSave = () => {
+    localStorage.setItem("registeredUser", JSON.stringify(user));
     alert("Profile Saved Successfully!");
   };
 
   return (
     <>
-     <UserNavbar />
+      <UserNavbar />
 
       <div className="profile-page">
-
         <div className="profile-card">
-
           <div className="profile-header">
-
             <img
               src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
               alt="Profile"
             />
 
             <h1>My Profile</h1>
-
           </div>
 
           <div className="profile-form">
-
             <label>Full Name</label>
             <input
               type="text"
@@ -96,17 +96,11 @@ function Profile() {
             <label>Upload Resume</label>
             <input type="file" />
 
-            <button
-              className="save-btn"
-              onClick={handleSave}
-            >
+            <button className="save-btn" onClick={handleSave}>
               Save Changes
             </button>
-
           </div>
-
         </div>
-
       </div>
 
       <Footer />
