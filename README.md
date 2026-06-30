@@ -137,21 +137,21 @@ job-portal/
 ## Clone the repository
 
 ```bash
-git clone https://github.com/your-username/job-portal.git
+git clone https://github.com/ramkiran704/job-portal.git
 cd job-portal
 ```
 
 ## Install Frontend Dependencies
 
 ```bash
-cd client
+cd  frontend
 npm install
 ```
 
 ## Install Backend Dependencies
 
 ```bash
-cd ../server
+cd backend
 npm install
 ```
 
@@ -162,7 +162,7 @@ npm install
 Create a `.env` file inside the **server** directory.
 
 ```env
-PORT=5001
+PORT=5000
 
 MONGO_URI=your_mongodb_connection_string
 
