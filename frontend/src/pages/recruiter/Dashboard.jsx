@@ -16,7 +16,7 @@ function Dashboard() {
         const token = localStorage.getItem("token");
         
         // 1. Fetch Profile info to greet them nicely
-        const profileRes = await fetch("http://localhost:5000/api/auth/profile", {
+        const profileRes = await fetch("http://localhost:5001/api/auth/profile", {
           headers: { "Authorization": `Bearer ${token}` }
         });
         if (profileRes.ok) {
@@ -25,14 +25,14 @@ function Dashboard() {
         }
 
         // 2. Fetch Job Postings count
-        const jobsRes = await fetch("http://localhost:5000/api/jobs", { // Adjust route if you have a specific /my-jobs route
+        const jobsRes = await fetch("http://localhost:5001/api/jobs", { // Adjust route if you have a specific /my-jobs route
           headers: { "Authorization": `Bearer ${token}` }
         });
         const jobsData = await jobsRes.json();
         const totalJobs = Array.isArray(jobsData) ? jobsData.length : 0;
 
         // 3. Fetch Applicants list to calculate statistics
-        const appsRes = await fetch("http://localhost:5000/api/applications", {
+        const appsRes = await fetch("http://localhost:5001/api/applications", {
           headers: { "Authorization": `Bearer ${token}` }
         });
         const appsData = await appsRes.json();

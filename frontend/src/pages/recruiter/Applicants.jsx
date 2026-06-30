@@ -15,7 +15,7 @@ function Applicants() {
         const token = localStorage.getItem("token");
         
         // This hits your central application route, which filters based on recruiter ID inside the token
-        const response = await fetch("http://localhost:5000/api/applications", {
+        const response = await fetch("http://localhost:5001/api/applications", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -46,7 +46,7 @@ function Applicants() {
   const handleStatusChange = async (id, newStatus) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/applications/${id}`, {
+      const response = await fetch(`http://localhost:5001/api/applications/${id}`, {
         method: "PUT",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -101,7 +101,7 @@ function Applicants() {
                   <td>
                     {applicant.resume ? (
                       <a 
-                        href={`http://localhost:5000/${applicant.resume.replace(/\\/g, '/')}`} 
+                        href={`http://localhost:5001/${applicant.resume.replace(/\\/g, '/')}`} 
                         target="_blank" 
                         rel="noreferrer"
                         style={{ color: "#007bff", textDecoration: "underline" }}

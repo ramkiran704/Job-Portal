@@ -13,7 +13,7 @@ function MyJobs() {
     const fetchMyJobs = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5000/api/jobs/my-postings", {
+        const response = await fetch("http://localhost:5001/api/jobs/my-postings", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -44,7 +44,7 @@ function MyJobs() {
     
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/jobs/${id}`, {
+      const response = await fetch(`http://localhost:5001/api/jobs/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`

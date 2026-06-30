@@ -12,7 +12,7 @@ function Applications() {
       try {
         const token = localStorage.getItem("token");
         // ✅ FIXED: Changed URL from /api/applications to /api/applications/my-apps
-        const response = await fetch("http://localhost:5000/api/applications/my-apps", {
+        const response = await fetch("http://localhost:5001/api/applications/my-apps", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -65,7 +65,7 @@ function Applications() {
                 {app.resume && (
                   <p>
                     <strong>Resume Attached:</strong>{" "}
-                    <a href={`http://localhost:5000/${app.resume.replace(/\\/g, '/')}`} target="_blank" rel="noreferrer" style={{color: "#007bff", textDecoration: "underline"}}>
+                    <a href={`http://localhost:5001/${app.resume.replace(/\\/g, '/')}`} target="_blank" rel="noreferrer" style={{color: "#007bff", textDecoration: "underline"}}>
                       View Uploaded Document
                     </a>
                   </p>
