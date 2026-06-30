@@ -1,80 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../styles/Home.css";
 import UserNavbar from "../../components/user/UserNavbar";
 import Footer from "../../components/common/Footer";
 import JobCard from "../../components/common/JobCard";
 
 function Home() {
-  const jobs = [
-    {
-      id: 1,
-      title: "Frontend Developer",
-      company: "Google",
-      location: "Bangalore",
-      salary: "₹12 LPA",
-      type: "Full Time",
-    },
-    {
-      id: 2,
-      title: "Backend Developer",
-      company: "Microsoft",
-      location: "Hyderabad",
-      salary: "₹15 LPA",
-      type: "Remote",
-    },
-    {
-      id: 3,
-      title: "UI/UX Designer",
-      company: "Amazon",
-      location: "Kochi",
-      salary: "₹10 LPA",
-      type: "Hybrid",
-    },
-    {
-      id: 4,
-      title: "Full Stack Developer",
-      company: "Adobe",
-      location: "Pune",
-      salary: "₹18 LPA",
-      type: "Full Time",
-    },
-  ];
-
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredJobs, setFilteredJobs] = useState(jobs);
+  const [allJobs, setAllJobs] = useState([]); // Real DB data
+  const [filteredJobs, setFilteredJobs] = useState([]);
+
+  // Fetch jobs dynamically from MongoDB when the page loads
+  useEffect(() => {
+    const fetchLiveJobs = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/jobs");
+        const data = await response.json();
+        
+        if (response.ok) {
+          setAllJobs(data);
+          setFilteredJobs(data); // Default view shows all jobs
+        }
+      } catch (error) {
+        console.error("Failed to fetch jobs for homepage:", error);
+      }
+    };
+    fetchLiveJobs();
+  }, []);
 
   const handleSearch = () => {
     if (searchTerm.trim() === "") {
-      setFilteredJobs(jobs);
+      setFilteredJobs(allJobs);
       return;
     }
 
-    const result = jobs.filter(
+    const result = allJobs.filter(
       (job) =>
         job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.company.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
     setFilteredJobs(result);
   };
 
   return (
     <>
       <UserNavbar />
-
       <div className="home">
         {/* Hero Section */}
         <section className="hero">
           <div className="hero-left">
-            <h1>
-             <span>Find Your Dream Job</span>
-            </h1>
-
-            <p>
-              Connect with top companies, discover exciting career
-              opportunities, and apply with one click.
-            </p>
-
+            <h1><span>Find Your Dream Job</span></h1>
+            <p>Connect with top companies, discover exciting career opportunities, and apply with one click.</p>
             <div className="search-box">
               <input
                 type="text"
@@ -82,58 +57,28 @@ function Home() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-
               <button onClick={handleSearch}>Search</button>
             </div>
           </div>
-
           <div className="hero-right">
-            <img
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=700"
-              alt="Office"
-            />
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=700" alt="Office" />
           </div>
         </section>
 
-        {/* Statistics */}
-        <section className="stats">
-          <div className="stat">
-            <h2>1000+</h2>
-            <p>Jobs Posted</p>
-          </div>
-
-          <div className="stat">
-            <h2>500+</h2>
-            <p>Companies</p>
-          </div>
-
-          <div className="stat">
-            <h2>20K+</h2>
-            <p>Candidates</p>
-          </div>
-
-          <div className="stat">
-            <h2>95%</h2>
-            <p>Hiring Rate</p>
-          </div>
-        </section>
-
-        {/* Featured Jobs */}
+        {/* Featured Jobs From Database */}
         <section className="featured">
           <h2>Featured Jobs</h2>
-
           <div className="jobs">
             {filteredJobs.length > 0 ? (
               filteredJobs.map((job) => (
-                <JobCard key={job.id} job={job} />
+                <JobCard key={job._id} job={job} /> // Using live MongoDB _id
               ))
             ) : (
-              <p>No jobs found</p>
+              <p>No active job openings found</p>
             )}
           </div>
         </section>
       </div>
-
       <Footer />
     </>
   );

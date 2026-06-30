@@ -1,30 +1,47 @@
 import express from 'express';
-// Assuming you have an applicationController file with these matching methods
-// import { applyToJob, getJobSeekerApplications, getJobApplicants, updateStatus } from '../controllers/applicationController.js';
+import {
+  applyToJob,
+  getMyApplications,
+  getJobApplicants,
+  getRecruiterApplicants // ✅ FIXED: Imported the new method
+} from '../controllers/applicationController.js';
+import { protect, authorizeRoles } from '../middleware/authMiddleware.js';
+import { uploadResume } from '../middleware/uploadMiddleware.js';
 
 const router = express.Router();
 
-/* --- JOB SEEKER ROUTES --- */
-// Handles submitting applications (Applications.jsx / JobDetails.jsx trigger action)
-router.post('/', (req, res) => {
-  res.json({ message: "Submit job application endpoint reached" });
-});
+// 1. Seeker: Apply for a job
+router.post(
+  '/',
+  protect,
+  authorizeRoles('seeker'),
+  uploadResume.single('resume'),
+  applyToJob
+);
 
-// Handles tracking status lists within Applications.jsx 
-router.get('/my-apps', (req, res) => {
-  res.json({ message: "Fetch user application tracking lists reached" });
-});
+// 2. Recruiter: Get ALL candidate applications for jobs posted by this employer
+// ✅ FIXED: Handled the GET request sent by your recruiter Applicants.jsx page
+router.get(
+  '/', 
+  protect, 
+  authorizeRoles('employer'), 
+  getRecruiterApplicants
+);
 
+// 3. Seeker: Get applications submitted by the logged-in Job Seeker
+router.get(
+  '/my-apps', 
+  protect, 
+  authorizeRoles('seeker'), 
+  getMyApplications
+);
 
-/* --- RECRUITER ROUTES --- */
-// Handles reviewing candidates for a specific posting inside Applicants.jsx
-router.get('/job/:jobId', (req, res) => {
-  res.json({ message: `Fetch all candidate profiles for job position ${req.params.jobId}` });
-});
-
-// Handles Accept/Reject decision making status triggers
-router.put('/:id/status', (req, res) => {
-  res.json({ message: `Update application ID ${req.params.id} application status reached` });
-});
+// 4. Recruiter: Get candidate applications for a specific single job ID
+router.get(
+  '/job/:jobId', 
+  protect, 
+  authorizeRoles('employer'), 
+  getJobApplicants
+);
 
 export default router;

@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "../../styles/ApplyForm.css";
 
 function ApplyForm() {
+  const { id } = useParams(); // Retrieves Job ObjectId directly from URL parameter
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phone: "",
     qualification: "",
     experience: "",
-    resume: "",
+    resume: null, // Stores raw binary file payload instead of standard string text
   });
 
   const handleChange = (e) => {
@@ -18,10 +22,54 @@ function ApplyForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleFileChange = (e) => {
+    setFormData({
+      ...formData,
+      resume: e.target.files[0],
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Application submitted successfully!");
-    console.log(formData);
+
+    if (!formData.resume) {
+      alert("Please upload a resume file");
+      return;
+    }
+
+    // Wrap form content using FormData format to support handling files through Multer
+    const data = new FormData();
+    data.append("jobId", id);
+    data.append("fullName", formData.fullName);
+    data.append("email", formData.email);
+    data.append("phone", formData.phone);
+    data.append("qualification", formData.qualification);
+    data.append("experience", formData.experience);
+    data.append("resume", formData.resume);
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5000/api/applications", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`
+          // CRITICAL: Do NOT set Content-Type header manually here
+        },
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Application submitted successfully!");
+        navigate("/applications");
+      } else {
+        alert(`Application Error: ${result.message}`);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error uploading application files.");
+    }
   };
 
   return (
@@ -74,13 +122,16 @@ function ApplyForm() {
             onChange={handleChange}
           />
 
-          <input
-            type="text"
-            name="resume"
-            placeholder="Resume Link"
-            value={formData.resume}
-            onChange={handleChange}
-          />
+          <div style={{ textAlign: "left", margin: "10px 0" }}>
+            <label style={{ fontSize: "14px", color: "#555" }}>Upload Resume (PDF/DOC):</label>
+            <input
+              type="file"
+              name="resume"
+              accept=".pdf,.doc,.docx"
+              onChange={handleFileChange}
+              required
+            />
+          </div>
 
           <button type="submit">Submit Application</button>
         </form>

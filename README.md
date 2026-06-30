@@ -40,13 +40,6 @@ The application follows a RESTful architecture and implements secure authenticat
 - Download Resumes
 - Accept/Reject Applications
 
-## Administrator
-
-- Manage Users
-- Manage Recruiters
-- Remove Fake Job Listings
-- Monitor System Activities
-- Generate Reports
 
 ---
 
@@ -185,14 +178,14 @@ CLIENT_URL=http://localhost:3000
 ## Start Backend
 
 ```bash
-cd server
+cd backend
 npm run dev
 ```
 
 ## Start Frontend
 
 ```bash
-cd client
+cd frontend
 npm start
 ```
 
@@ -200,10 +193,10 @@ The application will be available at
 
 ```
 Frontend:
-http://localhost:3000
+http://localhost:5173
 
 Backend:
-http://localhost:5000
+http://localhost:3000
 ```
 
 ---

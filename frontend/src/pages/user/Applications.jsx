@@ -1,31 +1,42 @@
+import { useEffect, useState } from "react";
 import UserNavbar from "../../components/user/UserNavbar";
 import Footer from "../../components/common/Footer";
 import "../../styles/Applications.css";
 
 function Applications() {
-  const applications = [
-    {
-      id: 1,
-      jobTitle: "Frontend Developer",
-      company: "Google",
-      location: "Bangalore",
-      status: "Under Review",
-    },
-    {
-      id: 2,
-      jobTitle: "Backend Developer",
-      company: "Microsoft",
-      location: "Hyderabad",
-      status: "Interview Scheduled",
-    },
-    {
-      id: 3,
-      jobTitle: "UI/UX Designer",
-      company: "Amazon",
-      location: "Kochi",
-      status: "Rejected",
-    },
-  ];
+  const [applications, setApplications] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMyApplications = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        // ✅ FIXED: Changed URL from /api/applications to /api/applications/my-apps
+        const response = await fetch("http://localhost:5000/api/applications/my-apps", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+          const extractedApps = Array.isArray(data) ? data : data.applications || data.data || [];
+          setApplications(extractedApps); 
+        } else {
+          console.error("Backend error:", data.message);
+        }
+      } catch (error) {
+        console.error("Error connecting to applications API:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMyApplications();
+  }, []);
 
   return (
     <>
@@ -33,30 +44,40 @@ function Applications() {
 
       <div className="applications-page">
         <h1>My Applications</h1>
+        
 
-        <p>Track the status of your applications.</p>
+        {loading ? (
+          <p style={{ textAlign: "center" }}>Loading your records...</p>
+        ) : applications.length === 0 ? (
+          <p style={{ textAlign: "center", marginTop: "20px" }}>You haven't applied to any positions yet.</p>
+        ) : (
+          <div className="applications-list">
+            {applications.map((app) => (
+              <div className="application-card" key={app._id}>
+                {/* Dynamically reads properties populated by your backend handler */}
+                <h2>{app.jobId?.title || "Position Applied"}</h2>
+                <h3>{app.jobId?.company || "Company Profile Verified"}</h3>
+                
+                <p><strong>Location:</strong> {app.jobId?.location || "Not Specified"}</p>
+                <p><strong>Applicant Name:</strong> {app.fullName}</p>
+                <p><strong>Qualification:</strong> {app.qualification}</p>
+                
+                {app.resume && (
+                  <p>
+                    <strong>Resume Attached:</strong>{" "}
+                    <a href={`http://localhost:5000/${app.resume.replace(/\\/g, '/')}`} target="_blank" rel="noreferrer" style={{color: "#007bff", textDecoration: "underline"}}>
+                      View Uploaded Document
+                    </a>
+                  </p>
+                )}
 
-        <div className="applications-list">
-          {applications.map((application) => (
-            <div className="application-card" key={application.id}>
-              <h2>{application.jobTitle}</h2>
-
-              <h3>{application.company}</h3>
-
-              <p>
-                <strong>Location:</strong> {application.location}
-              </p>
-
-              <span
-                className={`status ${application.status
-                  .replace(/\s+/g, "-")
-                  .toLowerCase()}`}
-              >
-                {application.status}
-              </span>
-            </div>
-          ))}
-        </div>
+                <span className={`status ${app.status?.toLowerCase() || "pending"}`}>
+                  {app.status || "Pending"}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <Footer />

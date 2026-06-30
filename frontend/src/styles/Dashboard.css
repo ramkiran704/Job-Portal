@@ -1,0 +1,106 @@
+.recruiter{
+    color:#2563eb;
+}
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: sans-serif;
+}
+
+.dashboard-header {
+  margin-bottom: 40px;
+}
+
+.dashboard-header h1 span {
+  color: #007bff;
+}
+
+/* KPI Grid Setup */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.stat-card {
+  padding: 25px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: #495057;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #212529;
+}
+
+.stat-action {
+  margin-top: auto;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Dynamic color borders matching statuses */
+.blue-card { border-left: 6px solid #007bff; }
+.blue-card .stat-action { color: #007bff; }
+
+.green-card { border-left: 6px solid #28a745; }
+.green-card .stat-action { color: #28a745; }
+
+.orange-card { border-left: 6px solid #fd7e14; }
+.orange-card .stat-action { color: #fd7e14; }
+
+/* Quick Actions Button Bar */
+.quick-actions-panel {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.quick-actions-panel h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.action-buttons-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.dashboard-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.dashboard-btn:hover {
+  opacity: 0.9;
+}
+
+.primary-btn { background-color: #007bff; color: white; }
+.secondary-btn { background-color: #6c757d; color: white; }

@@ -50,7 +50,7 @@ export const getJobById = async (req, res, next) => {
 export const getMyJobs = async (req, res, next) => {
   try {
     const jobs = await Job.find({ postedBy: req.user._id });
-    res.json(jobs);
+    res.status(200).json(jobs);
   } catch (error) {
     next(error);
   }
