@@ -246,14 +246,6 @@ http://localhost:5000
 - Manage Company Profile
 - Post Jobs
 - Manage Applicants
-
-## Admin
-
-- Manage Users
-- Manage Recruiters
-- Monitor Activities
-- Remove Fake Jobs
-
 ---
 
 # Security Features
